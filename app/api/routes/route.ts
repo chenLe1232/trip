@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   normalizePath,
   readRoutes,
+  readUploadedHtml,
   removeUploadedHtml,
   writeRoutes,
   writeUploadedHtml
@@ -10,9 +11,25 @@ import {
 
 const reservedPaths = new Set(["/", "/admin", "/login"]);
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const id = request.nextUrl.searchParams.get("id");
   const routes = await readRoutes();
-  return NextResponse.json({ routes });
+
+  if (!id) {
+    return NextResponse.json({ routes });
+  }
+
+  const found = routes.find((item) => item.id === id);
+  if (!found) {
+    return NextResponse.json({ message: "not found" }, { status: 404 });
+  }
+
+  const html = await readUploadedHtml(found.storedFileName);
+  if (!html) {
+    return NextResponse.json({ message: "html not found" }, { status: 404 });
+  }
+
+  return NextResponse.json({ route: found, html });
 }
 
 export async function POST(request: NextRequest) {
