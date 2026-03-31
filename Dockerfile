@@ -16,12 +16,11 @@ ENV PORT=3000
 
 RUN addgroup -g 1001 -S nodejs && adduser -S nextjs -u 1001
 
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-COPY --from=builder /app/data ./data
+# 保留完整项目结构，使用 next start 启动
+COPY --from=builder /app ./
 
 RUN chown -R nextjs:nodejs /app
 USER nextjs
 
 EXPOSE 3000
-CMD ["node", "server.js"]
+CMD ["npm", "run", "start"]

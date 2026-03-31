@@ -154,13 +154,14 @@ systemctl enable docker
 ```bash
 docker compose build --pull
 docker compose up -d
+# 容器内部执行 npm run start
 ```
 
 访问：`http://<服务器IP>:3000`
 
 ### 3) 目录说明
 
-- `Dockerfile`：Next.js standalone 生产镜像构建
+- `Dockerfile`：保留完整项目并通过 `next start` 启动
 - `docker-compose.yml`：容器启动与端口映射（`3000:3000`）
 - `data/` 挂载到容器 `/app/data`，用于持久化路由和上传文件
 
