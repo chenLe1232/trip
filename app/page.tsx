@@ -1,12 +1,14 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main>
       <header className="top-nav">
-        <a href="#home">首页</a>
-        <a href="#about">关于我</a>
-        <a href="#projects">项目</a>
-        <a href="#contact">联系</a>
-        <a href="/login">后台登录</a>
+        <Link href="#home">首页</Link>
+        <Link href="#about">关于我</Link>
+        <Link href="#projects">项目</Link>
+        <Link href="#contact">联系</Link>
+        <Link href="/login">铭文登录</Link>
       </header>
 
       <section id="home" className="hero section">
