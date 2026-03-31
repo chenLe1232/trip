@@ -1,6 +1,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { RouteConfig } from "./types";
+import { pruneUnusedUploads } from "./upload-cleanup";
 
 const dataDir = path.join(process.cwd(), "data");
 const uploadDir = path.join(dataDir, "uploads");
@@ -74,4 +75,12 @@ export const removeUploadedHtml = async (storedFileName: string): Promise<void> 
   } catch {
     // ignore missing files
   }
+};
+
+export const cleanupUnusedUploads = async (routes: RouteConfig[]): Promise<string[]> => {
+  await ensureStorage();
+  return pruneUnusedUploads(
+    uploadDir,
+    routes.map((route) => route.storedFileName)
+  );
 };
