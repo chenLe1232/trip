@@ -1,145 +1,33 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
 :root {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color-scheme: light;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --radius: 0.625rem;
 }
 
 * {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
+  border-color: var(--border);
 }
 
 body {
-  margin: 0;
-  background: #f6f7f9;
-  color: #1f2328;
-}
-
-a {
-  color: inherit;
-}
-
-.top-nav {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  gap: 12px;
-  padding: 14px 20px;
-  border-bottom: 1px solid #e6e8eb;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-}
-
-.top-nav a {
-  text-decoration: none;
-  padding: 6px 10px;
-  border-radius: 8px;
-}
-
-.top-nav a:hover {
-  background: #eef2ff;
-}
-
-.hero {
-  padding-top: 72px;
-}
-
-.section {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 42px 16px;
-}
-
-.container {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 32px 16px;
-}
-
-.narrow {
-  max-width: 420px;
-}
-
-.subtitle {
-  color: #59636e;
-}
-
-.panel {
-  background: #fff;
-  border: 1px solid #e6e8eb;
-  border-radius: 14px;
-  padding: 16px;
-  margin-bottom: 16px;
-}
-
-.form {
-  display: grid;
-  gap: 12px;
-}
-
-input {
-  width: 100%;
-  border: 1px solid #d0d7de;
-  border-radius: 8px;
-  padding: 8px;
-  margin-top: 6px;
-}
-
-button,
-a {
-  border: 1px solid #d0d7de;
-  background: #f6f8fa;
-  border-radius: 8px;
-  padding: 8px 12px;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.row-between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.routes {
-  display: grid;
-  gap: 10px;
-}
-
-.route-item {
-  border: 1px solid #e6e8eb;
-  border-radius: 8px;
-  padding: 12px;
-}
-
-.row-buttons {
-  display: flex;
-  gap: 8px;
-}
-
-.small,
-.meta {
-  font-size: 13px;
-  color: #59636e;
-}
-
-.status {
-  color: #0969da;
-}
-
-.error-text {
-  color: #d1242f;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }

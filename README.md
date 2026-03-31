@@ -135,3 +135,61 @@ npm run build   # 生产构建
 npm run start   # 启动生产服务
 npm run lint    # 代码检查
 ```
+
+---
+
+## Docker 启动与部署（推荐服务器方式）
+
+### 1) 准备 Docker 服务
+
+你的服务器是用 systemd 管理 Docker，可先执行：
+
+```bash
+systemctl start docker
+systemctl enable docker
+```
+
+### 2) 首次启动项目容器
+
+```bash
+docker compose build --pull
+docker compose up -d
+```
+
+访问：`http://<服务器IP>:3000`
+
+### 3) 目录说明
+
+- `Dockerfile`：Next.js standalone 生产镜像构建
+- `docker-compose.yml`：容器启动与端口映射（`3000:3000`）
+- `data/` 挂载到容器 `/app/data`，用于持久化路由和上传文件
+
+## 定时拉取远端代码并自动重启 Docker（PM2）
+
+已提供脚本：
+
+- `scripts/deploy-update.sh`：拉取远端代码；有变更则 `docker compose down/build/up -d`
+- `scripts/pm2-auto-update.sh`：循环调用 `deploy-update.sh`
+- `ecosystem.config.cjs`：PM2 启动配置
+
+### PM2 启动方式
+
+```bash
+# 安装 PM2（若尚未安装）
+npm i -g pm2
+
+# 启动自动部署任务
+pm2 start ecosystem.config.cjs
+
+# 设置开机自启
+pm2 startup
+pm2 save
+```
+
+### 常用参数
+
+可以在 `ecosystem.config.cjs` 里修改：
+
+- `DEPLOY_BRANCH`：要跟踪的分支（默认 `main`）
+- `DEPLOY_REMOTE`：远端名（默认 `origin`）
+- `INTERVAL_SECONDS`：轮询间隔秒数（默认 `300`）

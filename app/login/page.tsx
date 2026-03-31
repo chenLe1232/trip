@@ -2,6 +2,10 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -32,27 +36,34 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="container narrow">
-      <h1>后台登录</h1>
-      <p className="subtitle">默认账号：admin，默认密码：123456</p>
-      <form className="panel form" onSubmit={onSubmit}>
-        <label>
-          账号
-          <input value={username} onChange={(e) => setUsername(e.target.value)} />
-        </label>
-        <label>
-          密码
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <button disabled={loading} type="submit">
-          {loading ? "登录中..." : "登录"}
-        </button>
-        {error ? <p className="error-text">{error}</p> : null}
-      </form>
+    <main className="mx-auto flex min-h-screen w-full max-w-md items-center px-4">
+      <Card className="w-full">
+        <CardHeader>
+          <CardTitle>后台登录</CardTitle>
+          <CardDescription>默认账号：admin，默认密码：123456</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form className="grid gap-3" onSubmit={onSubmit}>
+            <div className="grid gap-2">
+              <Label htmlFor="username">账号</Label>
+              <Input id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="password">密码</Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <Button disabled={loading} type="submit">
+              {loading ? "登录中..." : "登录"}
+            </Button>
+            {error ? <p className="text-sm text-red-600">{error}</p> : null}
+          </form>
+        </CardContent>
+      </Card>
     </main>
   );
 }
