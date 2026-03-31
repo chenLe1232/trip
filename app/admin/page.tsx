@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, DragEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -29,6 +29,7 @@ export default function AdminPage() {
   const [previewId, setPreviewId] = useState<string | null>(null);
   const [previewHtml, setPreviewHtml] = useState("");
   const [previewing, setPreviewing] = useState(false);
+  const [dragActive, setDragActive] = useState(false);
 
   const loadRoutes = async () => {
     const res = await fetch("/api/routes", { cache: "no-store" });
@@ -45,12 +46,34 @@ export default function AdminPage() {
     loadRoutes();
   }, []);
 
-  const onFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const selected = event.target.files?.[0] ?? null;
-    setFile(selected);
-    if (selected) {
-      setStatus(`已选择文件 ${selected.name}`);
+  const isHtmlFile = (selected: File): boolean => {
+    const lowerName = selected.name.toLowerCase();
+    return lowerName.endsWith(".html") || selected.type === "text/html";
+  };
+
+  const setSelectedFile = (selected: File | null) => {
+    if (!selected) {
+      return;
     }
+
+    if (!isHtmlFile(selected)) {
+      setStatus("仅支持上传 .html 文件");
+      setFile(null);
+      return;
+    }
+
+    setFile(selected);
+    setStatus(`已选择文件 ${selected.name}`);
+  };
+
+  const onFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSelectedFile(event.target.files?.[0] ?? null);
+  };
+
+  const onDropFile = (event: DragEvent<HTMLLabelElement>) => {
+    event.preventDefault();
+    setDragActive(false);
+    setSelectedFile(event.dataTransfer.files?.[0] ?? null);
   };
 
   const saveRoute = async () => {
@@ -141,12 +164,27 @@ export default function AdminPage() {
       <Card>
         <CardHeader>
           <CardTitle>上传配置</CardTitle>
-          <CardDescription>上传 HTML 并绑定访问路径。</CardDescription>
+          <CardDescription>支持点击或拖拽上传，仅允许 HTML 文件。</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-3">
           <div className="grid gap-2">
-            <Label htmlFor="upload">上传 HTML 文件</Label>
-            <Input id="upload" type="file" accept=".html,text/html" onChange={onFileChange} />
+            <Label
+              htmlFor="upload"
+              onDragOver={(e) => {
+                e.preventDefault();
+                setDragActive(true);
+              }}
+              onDragLeave={() => setDragActive(false)}
+              onDrop={onDropFile}
+              className={cn(
+                "flex min-h-28 cursor-pointer flex-col items-center justify-center rounded-md border border-dashed px-4 text-center text-sm",
+                dragActive ? "border-zinc-900 bg-zinc-50" : "border-zinc-300"
+              )}
+            >
+              <span className="font-medium">拖拽 HTML 文件到这里</span>
+              <span className="mt-1 text-xs text-zinc-500">或点击选择（仅 .html）</span>
+              <Input id="upload" type="file" accept=".html,text/html" onChange={onFileChange} className="hidden" />
+            </Label>
             <p className="text-xs text-zinc-500">已选：{file?.name ?? "未选择文件"}</p>
           </div>
           <div className="grid gap-2">

@@ -21,9 +21,6 @@ export default async function Home() {
           <Link className={cn(buttonVariants({ variant: "ghost", size: "sm" }))} href="#about">
             关于
           </Link>
-          <Link className={cn(buttonVariants({ variant: "outline", size: "sm" }), "ml-auto")} href="/login">
-            管理登录
-          </Link>
         </nav>
       </header>
 
