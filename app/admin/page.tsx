@@ -146,6 +146,20 @@ export default function AdminPage() {
     setPreviewHtml(data.html);
   };
 
+  const copyPreviewHtml = async () => {
+    if (!previewHtml) {
+      setStatus("当前没有可复制的 HTML 内容");
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(previewHtml);
+      setStatus("HTML 已复制到剪贴板");
+    } catch {
+      setStatus("复制失败，请检查浏览器剪贴板权限");
+    }
+  };
+
   const logout = async () => {
     await fetch("/api/logout", { method: "POST" });
     router.push("/login");
@@ -216,6 +230,12 @@ export default function AdminPage() {
                 <Link className={cn(buttonVariants({ variant: "outline", size: "sm" }))} href={item.path} target="_blank">
                   访问
                 </Link>
+                <a
+                  className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
+                  href={`/api/routes/download?id=${item.id}`}
+                >
+                  下载 HTML
+                </a>
                 <Button
                   type="button"
                   variant="secondary"
@@ -230,9 +250,16 @@ export default function AdminPage() {
                 </Button>
               </div>
               {previewId === item.id ? (
-                <pre className="mt-3 max-h-72 overflow-auto rounded-md border bg-zinc-950 p-3 text-xs text-zinc-100">
-                  {previewHtml}
-                </pre>
+                <div className="mt-3 space-y-2">
+                  <div className="flex justify-end">
+                    <Button type="button" variant="outline" size="sm" onClick={copyPreviewHtml}>
+                      复制 HTML
+                    </Button>
+                  </div>
+                  <pre className="max-h-72 overflow-auto rounded-md border bg-zinc-950 p-3 text-xs text-zinc-100">
+                    {previewHtml}
+                  </pre>
+                </div>
               ) : null}
             </div>
           ))}

@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import {
+  cleanupUnusedUploads,
   normalizePath,
   readRoutes,
   readUploadedHtml,
@@ -76,6 +77,7 @@ export async function POST(request: NextRequest) {
   }
 
   await writeRoutes(routes);
+  await cleanupUnusedUploads(routes);
   return NextResponse.json({ ok: true });
 }
 
@@ -94,5 +96,6 @@ export async function DELETE(request: NextRequest) {
   await removeUploadedHtml(found.storedFileName);
   const next = routes.filter((item) => item.id !== id);
   await writeRoutes(next);
+  await cleanupUnusedUploads(next);
   return NextResponse.json({ ok: true });
 }
