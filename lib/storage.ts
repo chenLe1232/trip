@@ -18,7 +18,18 @@ const ensureStorage = async () => {
 
 export const readRoutes = async (): Promise<RouteConfig[]> => {
   await ensureStorage();
-  const raw = await fs.readFile(dataFile, "utf-8");
+
+  let raw: string;
+  try {
+    raw = await fs.readFile(dataFile, "utf-8");
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+      await fs.writeFile(dataFile, "[]", "utf-8");
+      return [];
+    }
+
+    throw error;
+  }
 
   try {
     const parsed = JSON.parse(raw) as RouteConfig[];

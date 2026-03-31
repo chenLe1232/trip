@@ -21,8 +21,12 @@ export default async function HtmlRoutePage({ params }: { params: Promise<Params
   }
 
   return (
-    <main>
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+    <main className="h-dvh w-full">
+      <iframe
+        title={`Uploaded HTML preview for ${pathname}`}
+        srcDoc={html}
+        className="h-full w-full border-0"
+      />
     </main>
   );
 }
