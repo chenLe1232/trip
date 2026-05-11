@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { AUTH_COOKIE } from "@/lib/auth";
 
-const guardedPrefixes = ["/admin", "/api/routes"];
+const guardedPrefixes = ["/admin", "/api/routes", "/codex", "/api/codex"];
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
@@ -26,5 +26,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/routes/:path*"]
+  matcher: ["/admin/:path*", "/api/routes/:path*", "/codex/:path*", "/api/codex/:path*"]
 };
