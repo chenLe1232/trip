@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="960" viewBox="0 0 1600 960" role="img" aria-label="自主权限不是一个开关，而是三档策略">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#17202a" />
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#14213d" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="#f7f9fc"/>
+  <text x="70" y="72" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="38" font-weight="700" fill="#17202a">自主权限不是一个开关，而是三档策略</text>
+  <text x="70" y="112" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="20" fill="#5f6b7a">autoharness 用 AutonomyPolicy 把“能不能改、改哪里、保护哪里”显式建模。</text>
+<rect x="100" y="210" width="390" height="230" rx="14" fill="#ffffff" stroke="#c8d2df" stroke-width="2" filter="url(#shadow)"/>
+<rect x="100" y="210" width="8" height="230" rx="4" fill="#e9eef5"/>
+<text x="128" y="249" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="23" font-weight="700" fill="#17202a">proposal</text>
+<text x="128" y="282" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">may_generate_proposals=true</text>
+<text x="128" y="306" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">may_apply_patches=false</text>
+<text x="128" y="330" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">永远只产出候选和 patch 预览</text>
+<rect x="605" y="210" width="390" height="230" rx="14" fill="#ffffff" stroke="#c8d2df" stroke-width="2" filter="url(#shadow)"/>
+<rect x="605" y="210" width="8" height="230" rx="4" fill="#2f6fed"/>
+<text x="633" y="249" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="23" font-weight="700" fill="#17202a">bounded</text>
+<text x="633" y="282" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">may_apply_patches=true</text>
+<text x="633" y="306" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">requires_explicit_edit_allowlist=true</text>
+<text x="633" y="330" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">只允许 editable_surfaces 内修改</text>
+<rect x="1110" y="210" width="390" height="230" rx="14" fill="#ffffff" stroke="#c8d2df" stroke-width="2" filter="url(#shadow)"/>
+<rect x="1110" y="210" width="8" height="230" rx="4" fill="#d94b4b"/>
+<text x="1138" y="249" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="23" font-weight="700" fill="#17202a">full</text>
+<text x="1138" y="282" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">allows_repo_wide_edits=true</text>
+<text x="1138" y="306" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">仍尊重 protected_surfaces</text>
+<text x="1138" y="330" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">适合成熟且隔离良好的 harness</text>
+<rect x="210" y="590" width="1180" height="220" rx="14" fill="#ffffff" stroke="#c8d2df" stroke-width="2" filter="url(#shadow)"/>
+<rect x="210" y="590" width="8" height="220" rx="4" fill="#169b72"/>
+<text x="238" y="629" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="23" font-weight="700" fill="#17202a">editing.py 的保护动作</text>
+<text x="238" y="662" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">所有 edit_plan 都先规范化为 search_replace / write_file / delete_file / move_path / unified_diff</text>
+<text x="238" y="686" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">start_edit_session 在应用前记录每个文件快照；finalize 默认恢复；blocked / proposal_only / preview 都会写入结果</text>
+<text x="238" y="710" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">路径会解析到 target_root 内，受 protected_surfaces 和 editable_surfaces 约束</text>
+<line x1="490" y1="325" x2="605" y2="325" stroke="#17202a" stroke-width="2"  marker-end="url(#arrow)"/>
+<line x1="995" y1="325" x2="1110" y2="325" stroke="#17202a" stroke-width="2"  marker-end="url(#arrow)"/>
+<line x1="295" y1="440" x2="470" y2="590" stroke="#e9eef5" stroke-width="2"  marker-end="url(#arrow)"/>
+<line x1="800" y1="440" x2="800" y2="590" stroke="#2f6fed" stroke-width="2"  marker-end="url(#arrow)"/>
+<line x1="1305" y1="440" x2="1130" y2="590" stroke="#d94b4b" stroke-width="2"  marker-end="url(#arrow)"/>
+</svg>

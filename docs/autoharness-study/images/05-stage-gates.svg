@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="960" viewBox="0 0 1600 960" role="img" aria-label="分阶段 Gate：让“更好”变成可判定">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#17202a" />
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#14213d" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="#f7f9fc"/>
+  <text x="70" y="72" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="38" font-weight="700" fill="#17202a">分阶段 Gate：让“更好”变成可判定</text>
+  <text x="70" y="112" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="20" fill="#5f6b7a">候选必须先过快速筛选，再通过稳定性、holdout 和回归验证，才适合成为 champion。</text>
+<rect x="80" y="205" width="330" height="200" rx="14" fill="#ffffff" stroke="#c8d2df" stroke-width="2" filter="url(#shadow)"/>
+<rect x="80" y="205" width="8" height="200" rx="4" fill="#2f6fed"/>
+<text x="108" y="244" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="23" font-weight="700" fill="#17202a">screening</text>
+<text x="108" y="277" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">search_benchmark</text>
+<text x="108" y="301" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">repeat=1</text>
+<text x="108" y="325" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">threshold：快速筛掉明显坏候选</text>
+<rect x="455" y="205" width="330" height="200" rx="14" fill="#ffffff" stroke="#c8d2df" stroke-width="2" filter="url(#shadow)"/>
+<rect x="455" y="205" width="8" height="200" rx="4" fill="#169b72"/>
+<text x="483" y="244" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="23" font-weight="700" fill="#17202a">validation</text>
+<text x="483" y="277" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">search_benchmark</text>
+<text x="483" y="301" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">repeat=3</text>
+<text x="483" y="325" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">confidence interval +</text>
+<text x="483" y="348" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">stability gate</text>
+<rect x="830" y="205" width="330" height="200" rx="14" fill="#ffffff" stroke="#c8d2df" stroke-width="2" filter="url(#shadow)"/>
+<rect x="830" y="205" width="8" height="200" rx="4" fill="#f28c28"/>
+<text x="858" y="244" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="23" font-weight="700" fill="#17202a">holdout</text>
+<text x="858" y="277" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">promotion_benchmark</text>
+<text x="858" y="301" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">repeat=3</text>
+<text x="858" y="325" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">用于推广前的保守验证</text>
+<rect x="1205" y="205" width="330" height="200" rx="14" fill="#ffffff" stroke="#c8d2df" stroke-width="2" filter="url(#shadow)"/>
+<rect x="1205" y="205" width="8" height="200" rx="4" fill="#7557d8"/>
+<text x="1233" y="244" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="23" font-weight="700" fill="#17202a">transfer</text>
+<text x="1233" y="277" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">regression_benchmark</text>
+<text x="1233" y="301" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">repeat=3</text>
+<text x="1233" y="325" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">验证泛化和回归风险</text>
+<line x1="410" y1="305" x2="455" y2="305" stroke="#17202a" stroke-width="2"  marker-end="url(#arrow)"/>
+<line x1="785" y1="305" x2="830" y2="305" stroke="#17202a" stroke-width="2"  marker-end="url(#arrow)"/>
+<line x1="1160" y1="305" x2="1205" y2="305" stroke="#17202a" stroke-width="2"  marker-end="url(#arrow)"/>
+<rect x="165" y="565" width="560" height="210" rx="14" fill="#ffffff" stroke="#c8d2df" stroke-width="2" filter="url(#shadow)"/>
+<rect x="165" y="565" width="8" height="210" rx="4" fill="#0d8fa6"/>
+<text x="193" y="604" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="23" font-weight="700" fill="#17202a">evaluate_stage_result</text>
+<text x="193" y="637" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">把 adapter 输出转换成 passed / failed / inconclusive /</text>
+<text x="193" y="660" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">planned</text>
+<text x="193" y="684" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">支持 baseline comparison、min_improvement、regressed</text>
+<text x="193" y="707" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">tasks 限制</text>
+<rect x="875" y="565" width="560" height="210" rx="14" fill="#ffffff" stroke="#c8d2df" stroke-width="2" filter="url(#shadow)"/>
+<rect x="875" y="565" width="8" height="210" rx="4" fill="#d94b4b"/>
+<text x="903" y="604" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="23" font-weight="700" fill="#17202a">run_validation</text>
+<text x="903" y="637" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">重复执行、聚合 success_rate、cost、duration、task_results</text>
+<text x="903" y="661" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Arial, sans-serif" font-size="16" font-weight="400" fill="#5f6b7a">识别 flaky、稳定性分数和置信区间宽度</text>
+<line x1="618" y1="405" x2="445" y2="565" stroke="#0d8fa6" stroke-width="2"  marker-end="url(#arrow)"/>
+<line x1="995" y1="405" x2="1155" y2="565" stroke="#d94b4b" stroke-width="2"  marker-end="url(#arrow)"/>
+</svg>
