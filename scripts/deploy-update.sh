@@ -18,7 +18,7 @@ if ! docker info >/dev/null 2>&1; then
 fi
 
 echo "[deploy-update] fetch ${REMOTE}/${BRANCH} ..."
-git fetch "$REMOTE" "$BRANCH"
+git fetch "$REMOTE"
 
 LOCAL_SHA="$(git rev-parse HEAD)"
 REMOTE_SHA="$(git rev-parse "${REMOTE}/${BRANCH}")"
