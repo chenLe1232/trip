@@ -194,3 +194,49 @@ pm2 save
 - `DEPLOY_BRANCH`：要跟踪的分支（默认 `main`）
 - `DEPLOY_REMOTE`：远端名（默认 `origin`）
 - `INTERVAL_SECONDS`：轮询间隔秒数（默认 `300`）
+
+## GitHub 合并冲突处理（快速）
+
+如果在 GitHub 上提示 `This branch has conflicts`，可在本地按下面步骤处理：
+
+```bash
+# 1) 获取最新代码
+git fetch origin
+
+# 2) 切到你的功能分支
+git checkout <your-branch>
+
+# 3) 合并目标分支（通常是 main）
+git merge origin/main
+```
+
+出现冲突后：
+
+1. 打开冲突文件，查找 `<<<<<<<`、`=======`、`>>>>>>>` 标记并手动保留正确内容。
+2. 逐个标记为已解决：
+
+```bash
+git add <resolved-file>
+```
+
+3. 完成合并提交：
+
+```bash
+git commit -m "resolve merge conflicts with main"
+```
+
+4. 推送分支并回到 GitHub 点击重新检查 / 合并：
+
+```bash
+git push origin <your-branch>
+```
+
+如果你想用 rebase 方式（保持线性历史），将第 3 步替换为：
+
+```bash
+git rebase origin/main
+# 解决冲突后
+
+git add <resolved-file>
+git rebase --continue
+```
